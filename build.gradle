@@ -85,3 +85,11 @@ dependencies {
     testCompile("info.cukes:cucumber-spring:1.2.2")
     testCompile("info.cukes:cucumber-junit:1.2.2")
 }
+
+distDocker {
+    exposePort 8080
+}
+
+task createWrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
