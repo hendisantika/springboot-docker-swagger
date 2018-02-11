@@ -5,32 +5,51 @@ buildscript {
 	repositories {
 		mavenCentral()
 		jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath 'se.transmode.gradle:gradle-docker:1.2'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.1"
 	}
+
+
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: "sonar-runner"
+//apply plugin: "sonar-runner"
+apply plugin: "org.sonarqube"
 apply plugin: 'application'
 apply plugin: 'docker'
+
 
 group = 'com.hendisantika'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 
-sonarRunner {
-    sonarProperties {
-        property "sonar.host.url", "http://162.243.152.234:9000"
-        property "sonar.jdbc.url", "jdbc:mysql://162.243.152.234:3306/sonar"
-        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
-        property "sonar.jdbc.username", "sonar"
-        property "sonar.jdbc.password", "123qwe"
+//sonarRunner {
+//    sonarProperties {
+//        property "sonar.host.url", "http://162.243.152.234:9000"
+//        property "sonar.jdbc.url", "jdbc:mysql://162.243.152.234:3306/sonar"
+//        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+//        property "sonar.jdbc.username", "sonar"
+//        property "sonar.jdbc.password", "123qwe"
+//    }
+//}
+
+sonarqube  {
+    properties {
+        property "sonar.projectKey", "EffectiveAndroidUI"
+        property "sonar.projectName", "EffectiveAndroidUI"
+        property "sonar.projectVersion", "1.0"
+        property "sonar.language", "java"
+        property "sonar.sources", "src/main/java"
+        property "sonar.binaries", "build"
     }
 }
 
@@ -70,7 +89,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator:${project.springBootVersion}")
 
     compile("com.h2database:h2")
-    compile("mysql:mysql-connector-java:5.1.30")
+    compile("mysql:mysql-connector-java:5.1.40")
     compile("org.easytesting:fest-assert:1.4")
 
     compile("com.mangofactory:swagger-springmvc:1.0.0")
@@ -85,6 +104,8 @@ dependencies {
     testCompile("info.cukes:cucumber-spring:1.2.2")
     testCompile("info.cukes:cucumber-junit:1.2.2")
 }
+
+
 
 distDocker {
     exposePort 8080
