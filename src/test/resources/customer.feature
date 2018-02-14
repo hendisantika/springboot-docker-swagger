@@ -1,5 +1,5 @@
-Feature: Second Scenario
+Feature: First Scenario
 
   Scenario: Storing and Retrieving Customer
-    When I store a new Customer[firstname="Dipesh",lastname="Rane"
-    Then I expect to see Customer[firstname="Dipesh",lastname="Rane" in List of Customers
+    When I store a new Customer[firstname="Rohit",lastname="Ghatol"
+    Then I expect to see Customer[firstname="Rohit",lastname="Ghatol" in List of Customers
