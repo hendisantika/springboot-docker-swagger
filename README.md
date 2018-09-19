@@ -110,3 +110,9 @@ More over Sprint Boot is appealing because it can easily integrate with Netflix 
 * launch a API Gateway for security, proxy (to consolidate web services) etc
 
 All these servers are spring boot servers and most of the time require only one Application class with few Spring Cloud Annotations.
+
+#### Screenshot
+
+Swagger UI Page
+
+![Swagger UI Page](img/home.png "Swagger UI Page")

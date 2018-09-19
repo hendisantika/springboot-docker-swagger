@@ -5,7 +5,6 @@ import com.hendisantika.springbootdockerswagger.repository.CustomerRepository;
 import com.mangofactory.swagger.plugin.EnableSwagger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +13,6 @@ import java.util.List;
 
 @SpringBootApplication
 @Configuration
-@EnableAutoConfiguration
 @EnableSwagger
 public class SpringbootDockerSwaggerApplication {
 

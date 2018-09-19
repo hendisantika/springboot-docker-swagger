@@ -47,7 +47,7 @@ public class SwaggerConfig {
                 "Restful API Documentation",
                 "Template of SpringBoot, JPA, Gradle and Swagger",
                 "API terms of service",
-                "xyz@gmail.com",
+                "hendisantika@gmail.com",
                 "API Licence Type",
                 "API License URL"
         );
