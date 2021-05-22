@@ -1,6 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '2.5.0'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'se.transmode.gradle:gradle-docker' version '1.2'
     id 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin' version '2.6.1'
@@ -8,43 +8,11 @@ plugins {
 
 group = 'com.hendisantika'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
-    maven {
-        url = "http://jcenter.bintray.com"
-    }
 }
-
-test {
-    useJUnitPlatform()
-}
-
-//sonarRunner {
-//    sonarProperties {
-//        property "sonar.host.url", "http://162.243.152.234:9000"
-//        property "sonar.jdbc.url", "jdbc:mysql://162.243.152.234:3306/sonar"
-//        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
-//        property "sonar.jdbc.username", "sonar"
-//        property "sonar.jdbc.password", "123qwe"
-//    }
-//}
-
-
-//apply plugin: 'java'
-//apply plugin: 'eclipse'
-//apply plugin: 'org.springframework.boot'
-////apply plugin: "sonar-runner"
-//apply plugin: org.sonarqube.gradle.SonarQubePlugin
-//apply plugin: "org.sonarqube"
-//apply plugin: 'application'
-//apply plugin: 'docker'
-//
-
-
-
-
 sonarqube  {
     properties {
         property "sonar.projectKey", "EffectiveAndroidUI"
@@ -62,7 +30,7 @@ jar {
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
     jcenter()
 }
 
@@ -84,36 +52,26 @@ task cucumber() {
 }
 
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-
-    implementation("com.h2database:h2")
-    implementation("mysql:mysql-connector-java:5.1.40")
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation("org.easytesting:fest-assert:1.4")
-
     implementation("com.mangofactory:swagger-springmvc:1.0.0")
     implementation("org.ajar:swagger-spring-mvc-ui:0.4")
     implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
 
     testImplementation group: 'junit', name: 'junit', version: '4.+'
-    testImplementation ("org.springframework:spring-test")
-    testImplementation ("org.springframework.boot:spring-boot-starter-test")
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-
     testImplementation("info.cukes:cucumber-spring:1.2.2")
     testImplementation("info.cukes:cucumber-junit:1.2.2")
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 distDocker {
     exposePort 8080
-}
-
-task createWrapper(type: Wrapper) {
-    gradleVersion = '2.0'
 }
