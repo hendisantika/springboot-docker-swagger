@@ -116,3 +116,5 @@ All these servers are spring boot servers and most of the time require only one 
 Swagger UI Page
 
 ![Swagger UI Page](img/home.png "Swagger UI Page")
+
+![Swagger UI](img/swagger.png "New Swagger UI")
