@@ -2,11 +2,11 @@ package com.hendisantika.springbootdockerswagger.controller;
 
 import com.hendisantika.springbootdockerswagger.domain.Customer;
 import com.hendisantika.springbootdockerswagger.service.CustomerService;
-import com.wordnik.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,19 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/apis/customers")
+@RequiredArgsConstructor
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
-    @ApiOperation(value = "Create Customer", response = Customer.class, httpMethod = "POST")
-    @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
+    @PostMapping
     public Customer createCustomer(@RequestBody Customer customer) {
         return customerService.createCustomer(customer);
     }
 
-    @ApiOperation(value = "List Customers", response = Customer.class, responseContainer = "List", httpMethod = "GET")
-    @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
+    @GetMapping
     public Iterable<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }

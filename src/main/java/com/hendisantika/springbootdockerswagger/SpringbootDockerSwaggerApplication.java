@@ -2,7 +2,7 @@ package com.hendisantika.springbootdockerswagger;
 
 import com.hendisantika.springbootdockerswagger.domain.Customer;
 import com.hendisantika.springbootdockerswagger.repository.CustomerRepository;
-import com.mangofactory.swagger.plugin.EnableSwagger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @SpringBootApplication
 @Configuration
-@EnableSwagger
+@Slf4j
 public class SpringbootDockerSwaggerApplication {
 
 	public static void main(String[] args) {
@@ -33,27 +33,27 @@ public class SpringbootDockerSwaggerApplication {
 
             // fetch all customers
             Iterable<Customer> customers = repository.findAll();
-            System.out.println("Customers found with findAll():");
-            System.out.println("-------------------------------");
+            log.info("Customers found with findAll():");
+            log.info("-------------------------------");
             for (Customer customer : customers) {
-                System.out.println(customer);
+                log.info(String.valueOf(customer));
             }
-            System.out.println();
+            log.info("================================");
 
 
             // fetch an individual customer by ID
-            Customer customer = repository.findOne(1L);
-            System.out.println("Customer found with findOne(1L):");
-            System.out.println("--------------------------------");
-            System.out.println(customer);
-            System.out.println();
+            Customer customer = repository.findById(1L).get();
+            log.info("Customer found with findOne(1L):");
+            log.info("--------------------------------");
+            log.info(String.valueOf(customer));
+            log.info("================================");
 
             // fetch customers by last name
             List<Customer> narutos = repository.findByLastName("Naruto");
-            System.out.println("Customer found with findByLastName('Naruto'):");
-            System.out.println("--------------------------------------------");
+            log.info("Customer found with findByLastName('Naruto'):");
+            log.info("--------------------------------------------");
             for (Customer naruto : narutos) {
-                System.out.println(naruto);
+                log.info(String.valueOf(naruto));
             }
         };
     }

@@ -1,13 +1,10 @@
 package com.hendisantika.springbootdockerswagger.config;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,37 +17,50 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
-@EnableSwagger
 public class SwaggerConfig {
 
-    private SpringSwaggerConfig springSwaggerConfig;
+//    private SpringSwaggerConfig springSwaggerConfig;
+//
+//    @Autowired
+//    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
+//        this.springSwaggerConfig = springSwaggerConfig;
+//    }
+//
+//    @Bean //Don't forget the @Bean annotation
+//    public SwaggerSpringMvcPlugin customImplementation() {
+//        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
+//                .apiInfo(apiInfo()).apiVersion("1.0").includePatterns(".*apis.*");
+//    }
+//
+//
+//    public void configureDefaultServletHandling(
+//            DefaultServletHandlerConfigurer configurer) {
+//        configurer.enable();
+//    }
+//
+//    private ApiInfo apiInfo() {
+//        ApiInfo apiInfo = new ApiInfo(
+//                "Restful API Documentation",
+//                "Template of SpringBoot, JPA, Gradle and Swagger",
+//                "API terms of service",
+//                "hendisantika@gmail.com",
+//                "API Licence Type",
+//                "API License URL"
+//        );
+//        return apiInfo;
+//    }
 
-    @Autowired
-    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-        this.springSwaggerConfig = springSwaggerConfig;
+    @Bean
+    public OpenAPI apiInfo() {
+        return new OpenAPI().info(new Info().title("Restful API Documentation")
+                .description("Restful API Documentation")
+                .version("v0.0.1")
+                .contact(getContactDetails()));
     }
 
-    @Bean //Don't forget the @Bean annotation
-    public SwaggerSpringMvcPlugin customImplementation() {
-        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
-                .apiInfo(apiInfo()).apiVersion("1.0").includePatterns(".*apis.*");
-    }
-
-
-    public void configureDefaultServletHandling(
-            DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-
-    private ApiInfo apiInfo() {
-        ApiInfo apiInfo = new ApiInfo(
-                "Restful API Documentation",
-                "Template of SpringBoot, JPA, Gradle and Swagger",
-                "API terms of service",
-                "hendisantika@gmail.com",
-                "API Licence Type",
-                "API License URL"
-        );
-        return apiInfo;
+    private Contact getContactDetails() {
+        return new Contact().name("Hendi Santika")
+                .email("hendisantika@yahoo.co.id")
+                .url("https://s.id/hendisantika");
     }
 }
