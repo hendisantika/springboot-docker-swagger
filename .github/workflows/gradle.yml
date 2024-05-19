@@ -69,4 +69,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: hendisantika/product-app:${{ env.DATE }}
+          tags: hendisantika/spring-docker-swagger:${{ env.DATE }}
