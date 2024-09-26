@@ -75,7 +75,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation group: 'junit', name: 'junit', version: '4.+'
     testImplementation("info.cukes:cucumber-spring:1.2.6")
-    testImplementation("info.cukes:cucumber-junit:1.2.2")
+    testImplementation("info.cukes:cucumber-junit:1.2.6")
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
